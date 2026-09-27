@@ -8,7 +8,7 @@ All data in this file is fictional and generated for training.
 import sqlite3
 
 DB_PATH = "nbk_demo.db"
-FLAG_THRESHOLD_KWD = 18000
+FLAG_THRESHOLD_KWD = 20000
 
 QUERY = """
 SELECT t.txn_id,
