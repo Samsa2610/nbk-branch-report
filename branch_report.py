@@ -44,7 +44,7 @@ def flag_large_withdrawals(withdrawals, threshold=FLAG_THRESHOLD_KWD):
 
 
 def fetch_withdrawals(db_path=DB_PATH):
-    """Read every withdrawal out of the database as a list of dictionaries."""
+    """Read every withdrawal out of the database as a lisst of dictionaries."""
     connection = sqlite3.connect(db_path)
     connection.row_factory = sqlite3.Row
     rows = connection.execute(QUERY).fetchall()
@@ -56,7 +56,7 @@ def main():
     withdrawals = fetch_withdrawals()
     flagged = flag_large_withdrawals(withdrawals)
 
-    print("NBK DAILY REPORT")
+    print("NBK MAIN REPORT")
     print("Withdrawals at or above " + format_kwd(FLAG_THRESHOLD_KWD))
     print("")
 
