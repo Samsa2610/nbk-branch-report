@@ -8,7 +8,7 @@ All data in this file is fictional and generated for training.
 import sqlite3
 
 DB_PATH = "nbk_demo.db"
-FLAG_THRESHOLD_KWD = 10000
+FLAG_THRESHOLD_KWD = 20000
 
 QUERY = """
 SELECT t.txn_id,
@@ -38,13 +38,13 @@ def flag_large_withdrawals(withdrawals, threshold=FLAG_THRESHOLD_KWD):
     """
     flagged = []
     for w in withdrawals:
-        if w["amount_kwd"] > threshold:
+        if w["amount_kwd"] >= threshold:
             flagged.append(w)
     return flagged
 
 
 def fetch_withdrawals(db_path=DB_PATH):
-    """Read every withdrawal out of the database as a list of dictionaries."""
+    """Read every withdrawal out of the database as a lisst of dictionaries."""
     connection = sqlite3.connect(db_path)
     connection.row_factory = sqlite3.Row
     rows = connection.execute(QUERY).fetchall()
@@ -56,7 +56,7 @@ def main():
     withdrawals = fetch_withdrawals()
     flagged = flag_large_withdrawals(withdrawals)
 
-    print("NBK BRANCH DAILY REPORT")
+    print("NBK BRANCH DAIL REPORT")
     print("Withdrawals at or above " + format_kwd(FLAG_THRESHOLD_KWD))
     print("")
 
